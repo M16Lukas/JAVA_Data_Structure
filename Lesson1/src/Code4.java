@@ -4,7 +4,7 @@ public class Code4 {
    */
   public static void main(String[] args) {
 
-    int n = 10111;
+    int n = 4;
 
     // 2,3, ... , sqrt(n)
     boolean isPrime = true;
