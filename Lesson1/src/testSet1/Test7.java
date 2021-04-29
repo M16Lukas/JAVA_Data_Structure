@@ -19,18 +19,13 @@ public class Test7 {
     scanner.close();
 
     int subResult = arr[0] - arr[1]; // 두 배열 값이 차 저장
-    if (subResult < 0) {
-      subResult = -subResult;
-    }
+    subResult = Math.abs(subResult);
 
     int temp = 0; // 빼기 결과 임시 저장 필드
     for (int i = 0; i < arraySize - 1; i++) {
       for (int j = (i + 1); j < arraySize; j++) {
         temp = arr[i] - arr[j];
-
-        if (temp < 0) { // 음수일 경우 양수로 변환
-          temp = -temp;
-        }
+        temp = Math.abs(temp);
 
         if (arr[i] != arr[j] && subResult > temp) {
           subResult = temp;
