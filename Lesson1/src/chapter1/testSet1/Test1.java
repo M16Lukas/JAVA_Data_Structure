@@ -1,4 +1,4 @@
-package testSet1;
+package chapter1.testSet1;
 
 public class Test1 {
   // 1 ~ 100000 사이의 정수들 중 소수의 갯수를 출력하는 프로그램을 작성하라

@@ -1,4 +1,4 @@
-package testSet1;
+package chapter1.testSet1;
 
 public class Test2 {
   // 1 ~ 100000 사이의 정수들 중에 가장 작은 50개의 소수를 찾아 그 합을 구하여 출력

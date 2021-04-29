@@ -1,3 +1,5 @@
+package chapter1;
+
 public class Code4 {
   /**
    * 소수 찾기
