@@ -10,8 +10,9 @@ public class Test11 {
   // 3. 두번째 행렬의 크기 q와r가 주어짐
   // 4. 이어지는 q줄에는 각 줄마다 r개의 정수가 주어진다
 
+  static Scanner scanner = new Scanner(System.in);
+
   public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
     System.out.print("p : ");
     int p = scanner.nextInt();
     System.out.print("q : ");
@@ -31,14 +32,12 @@ public class Test11 {
   }
 
   public static int[][] setMatrix(int[][] array, int row, int col) {
-    Scanner sc = new Scanner(System.in);
     for (int i = 0; i < row; i++) {
       System.out.print((i + 1) + " 행 입력 : ");
       for (int j = 0; j < col; j++) {
-        array[i][j] = sc.nextInt();
+        array[i][j] = scanner.nextInt();
       }
     }
-    // sc.close();
     return array;
   }
 
