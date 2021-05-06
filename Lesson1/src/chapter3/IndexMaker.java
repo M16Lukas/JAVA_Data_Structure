@@ -24,9 +24,9 @@ public class IndexMaker {
   // The word "java" does not appear
   // $ exit
 
-  static String[] words = new String[100000];
-  static int[] count = new int[100000];
-  static int n = 0; // 단어의 갯수
+  static String[] words = new String[100000]; // 단어 저장
+  static int[] count = new int[100000]; // 단어 별 갯수 저장
+  static int n = 0; // 전체 단어의 갯수
 
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
@@ -34,9 +34,11 @@ public class IndexMaker {
     while (true) {
       System.out.print("$ ");
       String command = sc.nextLine();
+
       if (command.equals("read")) {
         String filename = sc.nextLine();
         makeIndex(filename);
+
       } else if (command.equals("find")) {
         String str = sc.nextLine();
         int index = findWord(str);
@@ -45,14 +47,90 @@ public class IndexMaker {
         } else {
           System.out.println("The word " + words[index] + " does not appears");
         }
+
       } else if (command.equals("saves")) {
         String fileName = sc.nextLine();
         saveAs(fileName);
+
       } else if (command.equals("exit")) {
         break;
       }
     }
     sc.close();
+  }
+
+  private static void makeIndex(String filename) {
+    try {
+      Scanner inFile = new Scanner(new File("lib\\" + filename));
+      while (inFile.hasNext()) {
+        String str = inFile.next();
+        String trimmed = trimming(str);
+        if (trimmed != null) {
+          // case 3 : 대문자와 소문자가 다른 단어로 취급된다.
+          String t = trimmed.toLowerCase();
+          addWord(t);
+        }
+      }
+      inFile.close();
+    } catch (FileNotFoundException e) {
+      System.out.println("No File");
+      return;
+    }
+  }
+
+  // 단어 앞뒤에 붙은 특수문자 제거하기
+  private static String trimming(String str) {
+    int i = 0, j = str.length() - 1;
+
+    // case 1 : 소수점, 쉼표 등의 특수기호가 단어에 포함
+    // while i-th character is not letter
+    // 234&^%&^&
+    // 첫번째 letter 위치
+    while (i <= str.length() && !Character.isLetter(str.charAt(i))) {
+      i++;
+    }
+
+    // 234&^%&^&
+    // 마지막 letter 위치
+    while (j >= 0 && !Character.isLetter(str.charAt(j))) {
+      j--;
+    }
+
+    // case 2 : 숫자 등이 단어로 취급 == 문자열안에 알파벳이 하나도 없는 경우
+    if (i > j) {
+      return null;
+    } else {
+      return str.substring(i, j + 1);
+    }
+  }
+
+  private static void addWord(String str) {
+    int index = findWord(str);
+    if (index != -1) { // found
+      count[index]++;
+    } else { // not found
+      // case 4 : 단어들이 알파벳 순으로 정렬
+      // ordered list on insert
+      int i = n - 1;
+      while (i >= 0 && words[i].compareTo(str) > 0) {
+        // shift
+        words[i + 1] = words[i];
+        count[i + 1] = count[i];
+        i--;
+      }
+      words[i + 1] = str;
+      count[i + 1] = 1;
+      n++; // 새로운 단어가 추가 되었으므로 값 증가
+    }
+  }
+
+  private static int findWord(String str) {
+    for (int i = 0; i < n; i++) {
+      if (words[i].equalsIgnoreCase(str)) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   private static void saveAs(String fileName) {
@@ -66,39 +144,5 @@ public class IndexMaker {
       System.out.println("Save failed");
       return;
     }
-  }
-
-  private static void makeIndex(String filename) {
-    try {
-      Scanner inFile = new Scanner(new File("lib\\" + filename));
-      while (inFile.hasNext()) {
-        String str = inFile.next();
-        addWord(str);
-      }
-      inFile.close();
-    } catch (FileNotFoundException e) {
-      System.out.println("No File");
-      return;
-    }
-  }
-
-  private static void addWord(String str) {
-    int index = findWord(str);
-    if (index != -1) { // found
-      count[index]++;
-    } else { // not found
-      words[n] = str;
-      count[n] = 1;
-      n++;
-    }
-  }
-
-  private static int findWord(String str) {
-    for (int i = 0; i < n; i++) {
-      if (words[i].equalsIgnoreCase(str)) {
-        return i;
-      }
-    }
-    return -1;
   }
 }
