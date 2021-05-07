@@ -1,6 +1,11 @@
 import java.util.Scanner;
 
+// 다항함수
+// 항(term)들의 합이며, 항은 계수(coefficient)와 지수(exponent)에 의해서 정의
+// 계수는 0이 아닌 정수이고 지수는 음이아닌 정수라고 가정한다
+
 public class Code06_1 {
+
   static Scanner sc = new Scanner(System.in);
   static Polynomial[] polys = new Polynomial[100];
   static int n = 0;
