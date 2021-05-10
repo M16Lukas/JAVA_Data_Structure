@@ -7,6 +7,7 @@ public class Term {
   private int coef;
   private int exp;
 
+  // Constructor
   public Term(int coef, int exp) {
     this.coef = coef;
     this.exp = exp;
@@ -14,9 +15,10 @@ public class Term {
 
   @Override
   public String toString() {
-    return getCoef() + "x^" + getExp();
+    return coef + "x^" + exp;
   }
 
+  // Getter & Setter
   public int getCoef() {
     return coef;
   }
