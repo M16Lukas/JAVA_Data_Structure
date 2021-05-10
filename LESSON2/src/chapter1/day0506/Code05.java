@@ -12,17 +12,8 @@ public class Code05 {
       Scanner in = new Scanner(new File("lib\\data.txt"));
 
       while (in.hasNext()) {
-
-        rects[n] = new MyRectangle1();
-
-        rects[n].lu.x = in.nextInt();
-        rects[n].lu.y = in.nextInt();
-        rects[n].width = in.nextInt();
-        rects[n].height = in.nextInt();
-
-        n++;
+        rects[n++] = new MyRectangle1(in.nextInt(), in.nextInt(), in.nextInt(), in.nextInt());
       }
-
       in.close();
     } catch (FileNotFoundException e) {
       System.out.println("No File Data");
@@ -32,23 +23,19 @@ public class Code05 {
     bubbleSort();
 
     for (int i = 0; i < n; i++) {
-      System.out.println(rects[i].lu.x + " " + rects[i].lu.y + " " + rects[i].width + " " + rects[i].height);
+      rects[i].toString();
     }
   }
 
   private static void bubbleSort() {
     for (int i = n - 1; i > 0; i--) {
       for (int j = 0; j < i; j++) {
-        if (calArea(rects[j]) > calArea(rects[j + 1])) {
+        if (rects[j].calArea() > rects[j + 1].calArea()) {
           MyRectangle1 tmp = rects[j];
           rects[j] = rects[j + 1];
           rects[j + 1] = tmp;
         }
       }
     }
-  }
-
-  private static int calArea(MyRectangle1 r) {
-    return (r.width * r.height);
   }
 }
