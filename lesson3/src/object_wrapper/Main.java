@@ -1,6 +1,8 @@
+
 /**
  * Main
  */
+
 public class Main {
   // Class Object
 

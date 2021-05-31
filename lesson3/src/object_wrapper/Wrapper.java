@@ -1,4 +1,3 @@
-
 public class Wrapper {
   /**
    * Wrapper Class
@@ -36,5 +35,4 @@ public class Wrapper {
   // int a = (Integer)theArray[0];
   // -> theArray[0]에 저장된 것은 Integer객체이지만 Java컴파일러가
   // 자동으로 정수로 변환해준다. 이것을 unboxing 이라고 부른다.
-  //
 }

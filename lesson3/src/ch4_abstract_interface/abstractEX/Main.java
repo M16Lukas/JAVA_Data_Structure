@@ -1,4 +1,4 @@
-package ch4_absract_interface;
+package ch4_abstract_interface.abstractEX;
 
 /**
  * Main
@@ -10,3 +10,4 @@ public class Main {
   // 2. 추상 클래스 : 추상 메서드를 포함한 클래스
   // 3. 키워드는 abstract 로 표시
   // 4. 추상 클래스는 객체를 만들수없음. 따라서 서브 클래스를 만드는 용도로만 사용됨
+}
