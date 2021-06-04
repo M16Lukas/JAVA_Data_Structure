@@ -61,27 +61,105 @@ public class MySingleLinkedList<T> {
     return tmp;
   }
 
+  // 연결리스트의 index번째 위치에 새로운 데이터를 삽입한다.
+  // index - 1 번째 노드 뒤에 생성한다.
   public void add(int index, T item) { // insert
+    if (index < 0 || index > size) {
+      return;
+    }
 
+    if (index == 0) {
+      addFirst(item);
+    } else {
+      Node<T> tmp = getNode(index - 1);
+      addAfter(tmp, item);
+    }
   }
 
-  public T get(int index) {
-    return null;
+  // index 번째 노드를 삭제하고 그 노드에 저장된 데이터를 반환한다.
+  public T remove(int index) { // delete
+    if (index < 0 || index >= size) {
+      return null;
+    }
+
+    if (index == 0) {
+      return removeFirst();
+    }
+
+    Node<T> before = getNode(index - 1);
+    return removeAfter(before);
   }
 
-  public void remove(int index) { // delete
+  // 입력된 스트링을 저장한 노드를 찾아 삭제한다.
+  // 삭제된 노드에 저장된 스트링을 반환한다.
+  public T remove(T item) {
+    Node<T> p = head;
+    Node<T> q = null; // q는 항상 p의 직전 노드를 가리킴
+    while (p != null && !p.data.equals(item)) {
+      q = p;
+      p = p.next;
+    }
 
+    if (p == null) { // 삭제할 노드가 존재하지 않을 경우
+      return null;
+    }
+    if (q == null) { // 찾는 노드가 첫번째인 경우
+      return removeFirst();
+    } else {
+      return removeAfter(q);
+    }
   }
 
+  // 순회(traverse) : 연결리스트의 노드들을 처음부터 순서대로 방문하는 것
   public int indexOf(T item) { // search
+    Node<T> p = head;
+    int index = 0;
+
+    while (p != null) {
+      if (p.data.equals(item)) {
+        return index;
+      }
+
+      p = p.next;
+      index++;
+    }
+
     return -1;
+  }
+
+  // 연결리스트의 index 번쨰 노드의 주소를 반환한다.
+  public Node<T> getNode(int index) {
+    if (index < 0 || index >= size) {
+      return null;
+    }
+
+    Node<T> p = head;
+    for (int i = 0; i < index; i++) {
+      p = p.next;
+    }
+
+    return p;
+  }
+
+  // index 번째 노드의 데이터를 반환한다
+  public T get(int index) {
+    if (index < 0 || index >= size) {
+      return null;
+    }
+
+    return getNode(index).data;
   }
 
   public static void main(String[] args) {
     MySingleLinkedList<String> list = new MySingleLinkedList<>();
+    list.addFirst("Mondayyyy");
+    list.addFirst("Sunday~");
     list.add(0, "saturday");
     list.add(1, "friday");
-    list.add(0, "monday");
+    list.add(1, "friday");
+    list.add(2, "monday");
+    list.remove("friday");
+    int index = list.indexOf("Sunday~");
 
     String str = list.get(2);
     list.remove(2);
