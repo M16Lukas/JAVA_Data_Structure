@@ -1,0 +1,13 @@
+Iterator
+
+ㅁ public Iterator<T> iterator();
+  노드의 주소를 직접 사용자에게 제공하는 대신 그것을 private 멤버로
+  wrapping하고 있으면서 사용자가 필요로 하는 일을 (노드에 저장된 데이터를 엑세스하거나
+  한 칸 전진하는 일 등) 해주는 public method를 가진 Iterator 객체를 제공
+
+ㅁ 연결리스트의 iterator
+  - iterator는 개념적으로 연결리스트의 "노드와 노드 사이"를 가리킨다
+  - 초기상태의 iterator는 첫번째 노드의 앞 위치를 가리킨다
+  - next() 메서드는 한 칸 전진하면서 방금 지나친 노드의 데이터 반환
+  - hasNext() 메서드는 다음 노드가 존재하면 true, 그렇지 않으면 false를 반환
+  - remove() 메서드는 "가장 최근에 next() 메서드로 반환한 노드"를 삭제한다.

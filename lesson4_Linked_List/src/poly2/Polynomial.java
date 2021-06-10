@@ -1,5 +1,7 @@
 package poly2;
 
+import java.util.Iterator;
+
 public class Polynomial {
 
   public char name;
@@ -44,10 +46,19 @@ public class Polynomial {
 
   public int calc(int x) {
     int result = 0;
-    Node<Term> p = terms.head;
-    while (p != null) {
-      result += p.data.calc(x);
-      p = p.next;
+    // Node<Term> p = terms.head;
+    // while (p != null) {
+    // result += p.data.calc(x);
+    // p = p.next;
+    // }
+
+    // 연결리스트에서 이렇게 하는 것은 매우 비효율적이다
+    // get(i) 메서드는 호출될때마다 매번 연결리스트의 첫 번째 노드에서 시작하여
+    // i번째 노드를 새로 찾아가기 때문이다
+    Iterator<Term> iter = terms.iterator();
+    while (iter.hasNext()) {
+      Term t = iter.next();
+      result += t.calc(x);
     }
     return result;
   }

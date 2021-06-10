@@ -1,5 +1,7 @@
 package poly2;
 
+import java.util.Iterator;
+
 public class MySingleLinkedList<T> {
 
   public Node<T> head; // 첫 번째 노드
@@ -21,6 +23,10 @@ public class MySingleLinkedList<T> {
       this.data = data;
       next = null;
     }
+  }
+
+  public Iterator<T> iterator() {
+    return null;
   }
 
   private void addFirst(T item) {
