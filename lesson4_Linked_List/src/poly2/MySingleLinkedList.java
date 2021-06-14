@@ -1,6 +1,7 @@
 package poly2;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class MySingleLinkedList<T> {
 
@@ -26,7 +27,34 @@ public class MySingleLinkedList<T> {
   }
 
   public Iterator<T> iterator() {
-    return null;
+    return new MyIterator();
+  }
+
+  private class MyIterator implements Iterator<T>()
+  {
+    private Node<T> nextNode;
+
+    public MyIterator() {
+      nextNode = head;
+    }
+
+    public boolean hasNext() {
+      return nextNode != null;
+    }
+
+    public T next() {
+      if (nextNode == null) {
+        throw new NoSuchElementException();
+      }
+
+      T tmp = nextNode.data;
+      nextNode = nextNode.next;
+      return tmp;
+    }
+
+    public void remove() {
+      //
+    }
   }
 
   private void addFirst(T item) {
@@ -82,7 +110,7 @@ public class MySingleLinkedList<T> {
   // index - 1 번째 노드 뒤에 생성한다.
   public void add(int index, T item) { // insert
     if (index < 0 || index > size) {
-      return;
+      throw new IndexOutOfBoundsException(index);
     }
 
     if (index == 0) {
@@ -109,7 +137,7 @@ public class MySingleLinkedList<T> {
 
   // 입력된 스트링을 저장한 노드를 찾아 삭제한다.
   // 삭제된 노드에 저장된 스트링을 반환한다.
-  public T remove(T item) {
+  public boolean remove(T item) {
     Node<T> p = head;
     Node<T> q = null; // q는 항상 p의 직전 노드를 가리킴
     while (p != null && !p.data.equals(item)) {
@@ -118,12 +146,14 @@ public class MySingleLinkedList<T> {
     }
 
     if (p == null) { // 삭제할 노드가 존재하지 않을 경우
-      return null;
+      return false;
     }
     if (q == null) { // 찾는 노드가 첫번째인 경우
-      return removeFirst();
+      T tmp = removeFirst();
+      return (tmp != null);
     } else {
-      return removeAfter(q);
+      T tmp = removeAfter(q);
+      return (tmp != null);
     }
   }
 

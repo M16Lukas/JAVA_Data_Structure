@@ -66,10 +66,12 @@ public class Polynomial {
   @Override
   public String toString() {
     String result = "";
-    Node<Term> p = terms.head;
-    while (p != null) {
-      result += "+" + p.data;
-      p = p.next;
+    Iterator<Term> iter = terms.iterator();
+    while (iter.hasNext()) {
+      // result += "+" + p.data;
+      // p = p.next;
+      Term t = iter.next();
+      result += ("+" + t.toString());
     }
     return result;
   }
