@@ -8,6 +8,6 @@ Link : [인프런 : JAVA로 배우는 자료구조](https://www.inflearn.com/cou
 
 ## [ 2 ] 목차
 1. [섹션 1](./Lesson1)
-2. [섹션 2](./LESSON2/README.md)
-3. [섹션 3](./lesson3/README.md)
-4. [섹션 4](./lesson4_Linked_List/README.md)
+2. [섹션 2](./LESSON2)
+3. [섹션 3](./lesson3)
+4. [섹션 4](./lesson4_Linked_List)
