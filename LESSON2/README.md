@@ -1,14 +1,13 @@
-## Getting Started
+## 2장
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+### [섹션 4](./src/chapter1)
+제2-1장: 클래스, 객체, 참조변수
 
-## Folder Structure
+### [섹션 5](./src/chapter2)
+제2-2장: 메서드와 생성자
 
-The workspace contains two folders by default, where:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
 
-## Dependency Management
-
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).
+### 섹션 6. 제2-3장: static 그리고 public
+- [static](./src/chapter2/day0512)
+- [public](./src/chapter2/day0513)
